@@ -12,11 +12,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductRepository repository;
+    private final ProductRepository productRepository;
 
     public List<Product> getAll(){
-        return repository.findAll();
+        return productRepository.findAll();
     }
 
+    public Product getById(int id){
+        return productRepository.findById(id);
+    }
+
+    public Product saveProduct(Product product){
+        return productRepository.addProduct(product);
+    }
+
+    public void delete(int id){
+        productRepository.deleteProduct(id);
+    }
 
 }

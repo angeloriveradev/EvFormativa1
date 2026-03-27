@@ -24,13 +24,25 @@ public class ProductRepository {
         return inventory;
     }
 
+    public Product findById(int id){
+        for (Product product : inventory){
+            if (product.getIdProduct()==id)
+                return product;
+        }
+        return null;
+    }
+
     public Product addProduct(Product product){
         inventory.add(product);
         return product;
     }
 
-    public boolean deleteProduct(int idProduct){
-        return inventory.removeIf(p -> p.getIdProduct() == idProduct);
+    public boolean deleteProduct(int id){
+        Product product = findById(id);
+        if (product != null){
+            return inventory.remove(product);
+        }
+        return false;
     }
 
 }
